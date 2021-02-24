@@ -1,0 +1,190 @@
+@import "./lessVars.less";
+body{
+    margin:0
+}
+
+.editor-page{
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    .editor-top{
+        height: 40px;
+        flex-shrink:0;
+        background-color: @background-dark;
+        color: @text-dark;
+        padding:0 20px;
+        line-height: 40px;
+        border-bottom: 1px solid @border-dark;
+        display: flex;
+        .handle-area{
+            display: flex;
+            margin-left:200px;
+            >div{
+                margin-left: 10px;;
+                cursor: pointer;
+                >span{
+                    padding:4px;
+                }
+            }
+            >div:hover{
+                >span{
+                    border-radius: 2px;
+                    background-color: @highlight-dark;
+                }
+            }
+        }
+    }
+    .editor-wrapper{
+        flex:1;
+        display: flex;
+        height: calc(100vh - 40px);
+        >div{
+            height: 100%;
+        }
+        .editor-left{
+            width:200px;
+            background-color: @background-dark;
+            display: flex;
+            flex-direction: column;
+            >.components-title{
+                font-size: 12px;
+                padding-left:20px;
+                color:@text-dark;
+                height: 32px;
+                line-height: 32px;
+                background-color: @background-dark-light;
+                &::before{
+                    // content:" ";
+                    width:4px;
+                    vertical-align: middle;
+                    display: inline-block;
+                    margin-right: 10px;
+                    height: 12px;
+                }
+            }
+            >.components-list{
+                flex:1;
+                padding:10px 0;
+                overflow: auto;
+                >div{
+                    margin-bottom: 5px;
+                    user-select: none;
+                    height: 32px;
+                    padding:0px 20px;
+                    line-height: 32px;
+                    font-size: 12px;
+                    cursor: move;
+                    color:@text-dark;
+                    transition: background-color 200ms;
+                    border-left:2px solid transparent;
+                }
+                >div:hover{
+                    background-color: @border-dark;
+                    border-color:@highlight-dark;
+                }
+            }
+            .component-show{
+                width: 200px;
+                height: 32px;
+                pointer-events: none;
+                position: absolute;
+                left:0;height: 0;
+                .free-form-container{
+                    border:1px dashed @background-dark-light;
+                    height: 32px;
+                }
+                >div{
+                    background-color: rgba(255,255,255,.5);
+                }
+            }
+        }
+        .editor-right{
+            width:200px;
+            background-color: @background-dark;
+
+            .title-tab{
+                font-size: 14px;
+                color:@text-dark;
+                height: 32px;
+                line-height: 32px;
+                background-color: @background-dark-light;
+                display: flex;
+                >div{
+                    font-size: 12px;
+                    flex:1;
+                    cursor: pointer;
+                    color: @text-dark;
+                    text-align: center;
+                    border-bottom: 1px solid @border-dark;
+                    transition: backgroundColor 200ms;
+                }
+                >div:first-child{
+                    border-right: 1px solid @border-dark;;
+                }
+                >div.active{
+                    background-color: @background-dark;
+                    border-bottom: none;
+                }
+            }
+            .ant-form-item{
+                .ant-form-item-label>label{
+                    color:@text-dark;
+                    font-size: 12px;
+                }
+                span{
+                    color:@text-dark;
+                    font-size: 12px;
+                }
+                input{
+                    border-color: @border-dark;
+                    background-color: @background-dark-light;
+                    color:@text-dark
+                }
+                .ant-input-number{
+                    border-color: @border-dark;
+                    background-color: transparent;
+                    .ant-input-number-handler-wrap{
+                        background-color: transparent;
+                        border-color: @border-dark;
+                        span{
+                            border-color: @border-dark;
+                            color:@background-dark
+                        }
+                    }
+                }
+                .ant-select-selector{
+                    border-color: @border-dark;
+                    background-color: @background-dark-light;
+                    color:@text-dark
+                }
+                .ant-radio-inner{
+                    background-color: @background-dark-light;
+                    border-color: @border-dark;
+                }
+                .ant-switch-handle::before{
+                    background-color: @background-dark-light;
+                }
+                .ant-slider{
+                    .ant-slider-rail{
+                        background-color: @background-dark-light;
+                    }
+                    .ant-slider-handle{
+                        background-color: @background-dark-light;
+                    }
+                }
+                .ant-btn{
+                    background-color: @background-dark-light;
+                    border-color: @border-dark;
+                }
+            }
+        }
+        .editor-center{
+            flex:1;
+            background-color: #efefef;
+            overflow: auto;
+            height: 100%;
+            
+            @import "./Content/content.less";
+        }
+    }
+}

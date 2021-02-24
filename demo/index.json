@@ -1,0 +1,34 @@
+{
+    "type":"container",
+    "direction":"column",
+    "children":[
+                {
+                    "type":"select",
+                    "name":"user",
+                    "label":"用户",
+                    "rules":[{
+                        "required":true
+                    }],
+                    "options":[{
+                        "label":"王二",
+                        "value":"wang"
+                    },{
+                        "label":"王三",
+                        "value":"wang3"
+                    }]
+                    
+                },{
+                    "type":"input",
+                    "name":"name",
+                    "label":"名字",
+                    "rules":[]
+                },
+                {
+                    "type":"input",
+                    "name":"name2",
+                    "label":"名字2",
+                    "rules":[]
+                }
+            ]
+       
+}

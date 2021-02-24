@@ -1,0 +1,35 @@
+{
+    "type":"container",
+    "direction":"row",
+    "children":[
+        {
+            "type":"emptyItem",
+            "direction":"row",
+            "label":"数据源",
+            "children":[
+                {
+                    "type":"select",
+                    "name":"user",
+                    "labelField":"name",
+                    "valueField":"value",
+                    "rules":[{
+                        "required":true
+                    }],
+                    "options":[{
+                        "name":"王二",
+                        "value":"wang"
+                    },{
+                        "name":"王三",
+                        "value":"wang3"
+                    }]
+                    
+                },{
+                    "type":"input",
+                    "name":"name",
+                    "rules":[]
+                }
+            ]
+        }
+       
+    ]
+}

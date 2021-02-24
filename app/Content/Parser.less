@@ -1,0 +1,38 @@
+@import "../lessVars.less";
+.icon-drag{
+    display: none;
+    position: absolute;
+    z-index: 1;
+    left: -4px;
+    top: calc(50% - 15px);
+    font-size: 18px;
+    &:hover{
+        cursor: move;
+        color: @highlight-dark;
+    }
+}
+.free-form-container{
+    >.icon-drag{
+        left:-6px;
+        top:-22px;
+    }
+}
+.form-item-ondrag{
+    position: absolute;
+    flex-wrap: nowrap;
+    pointer-events:none;
+    padding-left: 20px;
+    margin-top:-20px;
+    margin-left:-10px;
+    .empty{
+        display: none;
+    }
+    .icon-drag{
+        top:2px;
+        color:@highlight-dark;
+        display: block;
+    }
+    .ant-form-item{
+        flex-wrap: nowrap;
+    }
+}

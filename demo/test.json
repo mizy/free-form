@@ -1,0 +1,187 @@
+{
+    "type": "container",
+    "uuid": "root",
+    "isRoot": true,
+    "labelCol": {
+        "span": 4
+    },
+    "children": [
+        {
+            "type": "container",
+            "uuid": "c382c390-677a-11eb-8ca4-4779b62ce5d6",
+            "label": "测试",
+            "children": [
+                {
+                    "type": "input",
+                    "uuid": "de59cbf0-677a-11eb-8ca4-4779b62ce5d6",
+                    "label": "测试",
+                    "placeholder": "请输入",
+                    "active": false
+                },
+                {
+                    "type": "input",
+                    "uuid": "db776c80-677a-11eb-8ca4-4779b62ce5d6",
+                    "label": "测试",
+                    "placeholder": "请输入"
+                }
+            ],
+            "active": false,
+            "formValues": {
+                "direction": "row",
+                "labelCol": 8,
+                "wrapperCol": 16
+            },
+            "direction": "row",
+            "labelCol": {
+                "span": 8
+            },
+            "wrapperCol": {
+                "span": 16
+            }
+        },
+        {
+            "type": "container",
+            "uuid": "10801580-677b-11eb-8ca4-4779b62ce5d6",
+            "label": "测试",
+            "children": [
+                {
+                    "type": "input",
+                    "uuid": "44936200-677b-11eb-8ca4-4779b62ce5d6",
+                    "label": "测试",
+                    "placeholder": "请输入"
+                },
+                {
+                    "type": "input",
+                    "uuid": "41391370-677b-11eb-8ca4-4779b62ce5d6",
+                    "label": "测试",
+                    "placeholder": "请输入"
+                }
+            ],
+            "active": false,
+            "formValues": {
+                "direction": "row",
+                "labelCol": 8,
+                "wrapperCol": 16
+            },
+            "direction": "row",
+            "labelCol": {
+                "span": 8
+            },
+            "wrapperCol": {
+                "span": 16
+            }
+        },
+        {
+            "type": "container",
+            "uuid": "120974a0-677b-11eb-8ca4-4779b62ce5d6",
+            "label": "测试",
+            "children": [
+                {
+                    "type": "select",
+                    "uuid": "493c9ec0-677b-11eb-8ca4-4779b62ce5d6",
+                    "label": "测试",
+                    "placeholder": "请选择",
+                    "active": false
+                },
+                {
+                    "type": "input",
+                    "uuid": "464ecda0-677b-11eb-8ca4-4779b62ce5d6",
+                    "label": "测试",
+                    "placeholder": "请输入",
+                    "active": false
+                }
+            ],
+            "active": false,
+            "formValues": {
+                "direction": "row",
+                "labelCol": 8,
+                "wrapperCol": 16
+            },
+            "direction": "row",
+            "labelCol": {
+                "span": 8
+            },
+            "wrapperCol": {
+                "span": 16
+            }
+        },
+        {
+            "type": "input",
+            "uuid": "d00399a0-677a-11eb-8ca4-4779b62ce5d6",
+            "label": "测试",
+            "placeholder": "请输入",
+            "active": false,
+            "formValues": {
+                "label": "测试",
+                "inputType": "TextArea"
+            },
+            "inputType": "TextArea"
+        },
+        {
+            "type": "select",
+            "uuid": "c793b7f0-677a-11eb-8ca4-4779b62ce5d6",
+            "label": "测试",
+            "placeholder": "请选择",
+            "active": false
+        },
+        {
+            "type": "container",
+            "uuid": "c52bb8a0-677a-11eb-8ca4-4779b62ce5d6",
+            "label": "测试",
+            "children": [
+                {
+                    "type": "input",
+                    "uuid": "f8a4e800-677a-11eb-8ca4-4779b62ce5d6",
+                    "label": "测试",
+                    "placeholder": "请输入",
+                    "active": false
+                },
+                {
+                    "type": "input",
+                    "uuid": "f551ec70-677a-11eb-8ca4-4779b62ce5d6",
+                    "label": "测试",
+                    "placeholder": "请输入"
+                }
+            ],
+            "active": false,
+            "formValues": {
+                "direction": "row",
+                "labelCol": 8,
+                "wrapperCol": 16
+            },
+            "direction": "row",
+            "labelCol": {
+                "span": 8
+            },
+            "wrapperCol": {
+                "span": 16
+            }
+        },
+        {
+            "type": "radioGroup",
+            "uuid": "00d17f20-677b-11eb-8ca4-4779b62ce5d6",
+            "label": "测试",
+            "options": [
+                {
+                    "label": "是",
+                    "value": true
+                },
+                {
+                    "label": "否",
+                    "value": false
+                }
+            ],
+            "active": true
+        }
+    ],
+    "active": false,
+    "formValues": {
+        "direction": "column",
+        "labelCol": 4,
+        "wrapperCol": 22
+    },
+    "direction": "column",
+    "wrapperCol": {
+        "span": 22
+    }
+}

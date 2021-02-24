@@ -1,0 +1,10 @@
+{
+    "type":"container",
+    "direction":"row",
+    "children":[
+        {
+            "type":"custom",
+            "label":"数据源"
+        }
+    ]
+}
