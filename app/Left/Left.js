@@ -60,15 +60,9 @@ export default (props) => {
 		<div className="editor-left">
 			<div className="components-title">组件列表</div>
 			<div className="components-list">{componentList}</div>
-			<div style={{ left: pos.x-16, top: pos.y-16, display: Component ? 'block' : 'none', width: 250 }} className="component-show">
+			<div style={{ left: pos.x-16, top: pos.y-16, display: Component ? 'block' : 'none' }} className="component-show">
 				{Component ? (
-					nowType === 'container' ? (
-						<Component.component {...Component.defaultProps} />
-					) : (
-						<Form.Item labelCol={{ span: 4 }} label="测试">
-							<Component.component {...Component.defaultProps} />
-						</Form.Item>
-					)
+					<span>{Component.title}</span>
 				) : (
 					false
 				)}

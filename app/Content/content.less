@@ -40,7 +40,7 @@
             display:block;
         }
         .active{
-            box-shadow:0 0 5px 1px @highlight-dark
+            border-color: @highlight-dark!important;
         }
         
         .empty{
@@ -78,6 +78,10 @@
                 }
             }
             
+        }
+        .cursor{
+            background-color: @highlight-dark;
+            position: absolute;
         }
     }
     .ant-form-inline{

@@ -22,26 +22,7 @@ export default props => {
             status.current = ("ended");
             setState([])
         },
-        // 移动逻辑
-        onMoveDrop (event,item,uuid){
-            // 解除事件绑定
-            if(status.current !=='dragging')return;
-            if(item){
-                context.removeItem(dragItem.current.config);
-                if(!item.children)item.children = [];
-                context.center.addItemByUuid(item,dragItem.current.config,uuid)
-            }
-            // 还原回去，否则react会找不到对应的parent报错
-            dragItem.current.parent.appendChild(dragItem.current.dom);
-            // 清理样式
-            dragItem.current.config.nowEmpty = undefined;
-            dragItem.current.dom.style.left = 'auto';
-            dragItem.current.dom.style.top = 'auto';
-            dragItem.current.dom.style.pointerEvents='auto';
-            document.body.style.cursor = 'auto';
-            dragItem.current.dom.classList.remove('form-item-ondrag');
-            dragItem.current = undefined;
-        },
+        
         onDragMove(e){
             const {startPos} = dragItem.current
             // 用户拖拽一定距离后才触发
@@ -75,79 +56,135 @@ export default props => {
             }
         },
         getClosestItem(x, y) {
-            const allDom = dom.current.querySelectorAll("[data-uuid]");
+            const data = context.data;
+            let res;
             let min = Infinity;
-            let uuid;
-            let pos;
-            for(let i = 0 ;i<allDom.length;i++){
-                const item = allDom[i];
-                let id = item.getAttribute("data-uuid");
-                let rect = itemRectCache[id]||item.getBoundingClientRect();
-                let left = rect.left-x;let right = rect.right-x;
-                let top = rect.top-y;let bottom = rect.bottom-y;
-                if(left<0&&right>0&&top<0&&bottom>0){//在元素内部
-                    if(item.children.length&&item.className.indexOf('free-form-container')>-1){//容器，且有子元素就跳过，通过子元素来判定
-                        continue;
-                    }
-                    uuid = id;
-                    pos = {
-                        left,right,top,bottom
-                    }
-                    return {
-                        uuid,
-                        pos
-                    }
-                }
-                
-                let dx = Math.abs(left)<Math.abs(right)?left:right;
-                let dy = Math.abs(top)<Math.abs(bottom)?top:bottom;
-                let multiplyVal =Math.abs(dx)*Math.abs(dy)
-                if(multiplyVal<min){
-                    min = multiplyVal;
-                    uuid = id;
-                    pos = {
-                        left,right,top,bottom
+            // 递归查找最近的元素，在内部则跳出
+            function bfs(items){
+                for(let i = 0;i<items.length;i++){
+                    const item = items[i];
+                    const {uuid} = item;
+                    const ref = dom.current.querySelector(`[data-uuid="${uuid}"]`);
+                    const rect = ref.getBoundingClientRect();
+                    const isInside = x>rect.left&&x<rect.right&&y>rect.top&&y<rect.bottom;
+                    if(isInside){
+                        min = Infinity;// 重置最小值，从子级选最小的
+                        if(item.type!=='container'){// 不是容器且在内部之间返回
+                            res = {
+                                parent:context.getParent(item),
+                                item,
+                                ref,
+                                rect
+                            };
+                            return;
+                        }
+                        if(item.children&&item.children.length>0){
+                            bfs(item.children);// 遍历容器内的元素
+                        }else{// 在容器内部的情况
+                            res = { 
+                                item,
+                                ref,
+                                rect
+                            };
+                        };
+                        return ;// 一旦在内部则跳出循环
+                    }else{
+                         const dx = Math.min(Math.abs(rect.left-x),Math.abs(rect.right-x));
+                         const dy = Math.min(Math.abs(rect.top-y),Math.abs(rect.bottom-y));
+                         const val = dx*dy;
+                         if(val<min){
+                            min = val;
+                            const parent = context.getParent(item)
+                            res = {
+                                parent,
+                                item,ref,rect
+                            }
+                         }
                     }
                 }
             }
-            return {
-                uuid,
-                pos
-            };
+            bfs([data]);
+            return res;
+        },
+         // 拖拽时生成辅助游标
+        onFindCursor(e){
+            const {clientX,clientY,offsetX,offsetY} = e;
+            clearTimeout(cursorTimeout);
+            cursorTimeout = setTimeout(()=>{
+                // 画布内在移动
+                if(status.current==='dragging'&&e.path.indexOf(dom.current)>-1){
+                    const res = context.center.getClosestItem(clientX,clientY);
+                    const parent = res.parent;
+                    const isRow = (parent||res.item).direction === 'row';
+                    const {left,top,right,bottom,width,height} = res.rect;
+                    if(!parent){// 直接生成在容器中,浮标不可见
+                        setCursor({
+                            left:-9999,
+                            top:-9999
+                        })
+                        _this.current.nowItem = {
+                            parent:res.item,
+                            index:0
+                        }
+                        return;
+                    }
+
+                    if(isRow){//横向
+                        const isLeft = clientX<(left+width/2);
+                        setCursor({
+                            width:2,height:height,
+                            left:isLeft?left:right,
+                            top
+                        })
+                        _this.current.nowItem = {
+                            parent,
+                            index:parent.children.indexOf(res.item)+isLeft?0:1
+                        }
+                    }else{//纵向
+                        const isTop = clientY<(top+height/2);
+                        setCursor({
+                            width:width,height:2,
+                            left:left,
+                            top:isTop?top:bottom
+                        })
+                        _this.current.nowItem = {
+                            parent,
+                            index:parent.children.indexOf(res.item)+isTop?0:1
+                        }
+                    }
+                }
+            },30)
+        },
+        onKeyPress(e){
+            if(e.target.tagName==="INPUT")return;
+            if(activeItem.current&&e.code==="Backspace"&&!activeItem.current.isRoot){
+                context.removeItem(activeItem.current);
+                this.onCancel();
+            }
+        },
+        onCancel(){
+            if(!activeItem.current)return;
+            activeItem.current.active = false;
+            activeItem.current = undefined;
+            context.render();
+            context.right.onSelect(undefined)
         }
+        
     })
 
     useEffect(()=>{
         context.center = _this.current;
-        document.addEventListener("keyup",onKeyPress);
-        document.addEventListener("mousemove",onFindCursor)
+        document.addEventListener("keyup",context.center.onKeyPress);
+        document.addEventListener("mousemove",context.center.onFindCursor)
         return ()=>{
-            document.removeEventListener("keyup",onKeyPress);
-            document.removeEventListener("mousemove",onFindCursor)
+            document.removeEventListener("keyup",context.center.onKeyPress);
+            document.removeEventListener("mousemove",context.center.onFindCursor)
         }
     },[]); 
     
-    const onFindCursor = (e)=>{
-        const {pageX,pageY,offsetX,offsetY} = e;
-        clearTimeout(cursorTimeout);
-        cursorTimeout = setTimeout(()=>{
-            // 画布内在移动
-            if(status.current==='dragging'&&e.path.indexOf(dom.current)>-1){
-                const item = context.center.getClosestItem(pageX,pageY);
-                console.log(item)
-            }
-        },100)
-        
-    }
+   
     
-    
-    const onKeyPress = (e)=>{
-        if(e.target.tagName==="INPUT")return;
-        if(activeItem.current&&e.code==="Backspace"&&!activeItem.current.isRoot){
-            context.removeItem(activeItem.current);
-            onCancel();
-        }
-    }
+   
 
     const onMouseUp = (event,item,uuid)=>{
         // 不论什么情况先解除事件绑定
@@ -168,7 +205,7 @@ export default props => {
             // 没有索引就默认添加到后面
             context.center.addItemByUuid(item,itemData,uuid)
         }else{
-            context.center.onMoveDrop(event,item,uuid);
+            // context.center.onMoveDrop(event,item,uuid);
         }
         status.current = ("ended");
         setState(new Date())
@@ -184,13 +221,7 @@ export default props => {
         props.context.right.onSelect(item)
     }
 
-    const onCancel = ()=>{
-        if(!activeItem.current)return;
-        activeItem.current.active = false;
-        activeItem.current = undefined;
-        context.render();
-        props.context.right.onSelect(undefined)
-    }
+    
 
     const onDrag = (event,config)=>{
         const dom = document.querySelector(`.item-${config.uuid}`)
@@ -218,7 +249,7 @@ export default props => {
 
     return (
         <div className="editor-center">
-            <div onClick={onCancel} ref={ref=>{dom.current=ref}} className={"content-canvas "+status.current} onMouseMove={undefined}>
+            <div onClick={_this.current.onCancel} ref={ref=>{dom.current=ref}} className={"content-canvas "+status.current} onMouseMove={undefined}>
                 <EventContext.Provider value={{
                     onMouseUp,
                     onDrag,
@@ -226,8 +257,7 @@ export default props => {
                 }}>
                     <Parser  config={data} {...data.formProps} />
                 </EventContext.Provider>
-                <div className="cursor-horizontal"></div>
-                <div className="cursor-vertical"></div>
+                <div className="cursor" style={{...cursor}}></div>
             </div>  
             
         </div>

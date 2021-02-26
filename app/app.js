@@ -42,6 +42,22 @@ export default props => {
             const index = parent.children.indexOf(item);
             parent.children.splice(index,1);
         },
+        getItemByUuid(uuid){
+            let res;
+            function dfs(item){
+                if(item.uuid===uuid){
+                    res = item;
+                    return
+                };
+                if(item.children){
+                    item.children.forEach(subItem=>{
+                        dfs(subItem);
+                    })
+                }
+            }
+            dfs(data.current);
+            return res;
+        },
         getParent:(child)=>{
             let res;
             function dfs(item,parent){

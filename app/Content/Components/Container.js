@@ -1,11 +1,12 @@
 import Render from '../Render/Render'
 import { EventContext } from '../context';
-import { Fragment, useContext ,useRef} from 'react';
+import { Fragment, useContext ,useEffect,useRef} from 'react';
 
 const Container = ({ config = {}, userComponents }) => {
     const { children = [],wrap,uuid,widthRatio,active, direction = 'column', labelCol,nowEmpty, wrapperCol } = config;
     const { onMouseUp,onClick,onDrag } = useContext(EventContext) || {};
     const className = "free-form-container free-container-"+direction + `${active?' active':''} item-${config.uuid}`;
+     
     return <div
         data-uuid={config.uuid}
         className={className}

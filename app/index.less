@@ -46,6 +46,7 @@ body{
             background-color: @background-dark;
             display: flex;
             flex-direction: column;
+            z-index: 1;
             >.components-title{
                 font-size: 12px;
                 padding-left:20px;
@@ -86,16 +87,14 @@ body{
             .component-show{
                 width: 200px;
                 height: 32px;
+                color:@text-dark;
                 pointer-events: none;
                 position: absolute;
-                left:0;height: 0;
-                .free-form-container{
-                    border:1px dashed @background-dark-light;
-                    height: 32px;
-                }
-                >div{
-                    background-color: rgba(255,255,255,.5);
-                }
+                padding:0 20px;
+                z-index: 1;
+                line-height: 32px;
+                border-left:2px solid @highlight-dark;
+                background-color:@border-dark;
             }
         }
         .editor-right{
