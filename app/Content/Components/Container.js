@@ -1,11 +1,12 @@
 import Render from '../Render/Render'
 import { EventContext } from '../context';
 import { Fragment, useContext ,useEffect,useRef} from 'react';
-
+import {observer} from 'mobx-react';
+import { action } from 'mobx';
 const Container = ({ config = {}, userComponents }) => {
     const { children = [],wrap,uuid,widthRatio,active, direction = 'column', labelCol,nowEmpty, wrapperCol } = config;
     const { onMouseUp,onClick,onDrag } = useContext(EventContext) || {};
-    const className = "free-form-container free-container-"+direction + `${active?' active':''} item-${config.uuid}`;
+    const className = "free-form-container free-container-"+direction + `${active?' active':''} item-${config.uuid} ${config.hover?'hover':''}`;
      
     return <div
         data-uuid={config.uuid}
@@ -14,11 +15,15 @@ const Container = ({ config = {}, userComponents }) => {
             flexDirection: direction,
             width:widthRatio?(widthRatio+'%'):'auto',
             flexWrap:wrap?"wrap":"nowrap" 
-        }}
-        
-        onMouseUp={(event) => {
-            onMouseUp&&onMouseUp(event, config)
-        }}
+        }} 
+        onMouseOver={action((e)=>{
+            e.stopPropagation();
+            config.hover = true;
+        })}
+        onMouseOut={action((e)=>{
+            e.stopPropagation();
+            config.hover = false
+        })}
         onMouseDown={(event)=>{
             if(!config.isRoot){
                 event.stopPropagation();
@@ -105,7 +110,7 @@ Container.formConfig = {
         },
     ]
 }
-Container.dataToValues = function(data){
+Container.dataToValues = action(function(data){
     let {wrapperCol,labelCol,uuid,active,children,...values} = data;
     if(wrapperCol){
         values.wrapperCol = wrapperCol.span
@@ -114,8 +119,8 @@ Container.dataToValues = function(data){
         values.labelCol = labelCol.span
     }
     return values
-},
-Container.valuesToData = (allValues,data)=>{
+}),
+Container.valuesToData = action((allValues,data)=>{
     for(let key in allValues){
         if(allValues[key]!==undefined){
             let value = allValues[key];
@@ -125,6 +130,5 @@ Container.valuesToData = (allValues,data)=>{
             data[key] = value;
         }
     }
-    console.log(data)
-}
-export default Container;
+})
+export default observer(Container);

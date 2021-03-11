@@ -7,15 +7,25 @@
     font-size: 13px;
     width: 20px;
     text-align: center;
-    color:@text-dark;
     display: none;
     border:1px solid @highlight-dark;
+    background-color: @highlight-dark;
+    color: #ffffff;
     &:hover{
         cursor: move;
-        background-color: @highlight-dark;
-        color: #ffffff;
+        
     }
-} 
+}  
+.drag-move-show{
+    position: absolute;
+    border:1px solid @highlight-dark;
+    padding:5px;
+    pointer-events:none;
+    cursor: move;
+    display: none;
+    width:400px;
+    background-color: rgba(0,0,0,.3);
+}
 .form-item-ondrag{
     position: absolute;
     flex-wrap: nowrap;

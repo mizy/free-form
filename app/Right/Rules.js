@@ -15,7 +15,7 @@ const valuesToData = (values,item)=>{
     if(values.otherRules){
         rules = rules.concat(values.otherRules)
     }
-    item.rules = rules
+    item.formItemProps.rules = rules
 }
 
 function dataToValues(item){
@@ -23,10 +23,11 @@ function dataToValues(item){
     const others = [];
     const values = {}
     rules.forEach(item => {
-        if(Object.keys(item).length>1){
+        const keys = Object.keys(item)
+        if(keys.length>1){
             others.push(item)
         }else{
-            values.push(item);
+            values[keys[0]] = item[keys[0]];
         }
     });
     values['otherRules'] = others;
@@ -40,7 +41,6 @@ export default props => {
         clearTimeout(timeout)
         timeout = setTimeout(()=>{
             valuesToData(allValues,nowItem);
-            props.context.render()
         },200);
     }
 

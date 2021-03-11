@@ -9,45 +9,45 @@ export default (props) => {
 	const [nowType, setNowType] = useState();
 	useEffect(() => {
 		props.context.left = {
-            onMouseUp
+            onMouseDown : (item, type) => {
+                props.context.center.onDragStart();
+                setNowType(type);
+                props.context.left.nowItem = components[type]
+                props.context.left.nowItem.type=type;
+                props.context.left.addEvent();
+            },
+        
+            addEvent : () => {
+                document.addEventListener('mouseup', props.context.left.onMouseUp);
+                document.addEventListener('mousemove', props.context.left.onMouseMove);
+            },
+        
+            onMouseUp :(event,silent) => {
+                if(!silent)props.context.center.onDragEnd();
+                document.body.style.cursor = 'auto';
+                setNowType();
+                document.removeEventListener('mouseup', props.context.left.onMouseUp);
+                document.removeEventListener('mousemove', props.context.left.onMouseMove);
+            },
+        
+            onMouseMove: (e) => {
+                document.body.style.cursor = 'move';
+                setPos({
+                    x: e.pageX,
+                    y: e.pageY,
+                });
+            }
         };
 	}, []);
 
-	const onMouseDown = (item, type) => {
-        props.context.center.onDragStart();
-        setNowType(type);
-        props.context.left.nowItem = components[type]
-        props.context.left.nowItem.type=type;
-		addEvent();
-	};
-
-	const addEvent = () => {
-		document.addEventListener('mouseup', onMouseUp);
-		document.addEventListener('mousemove', onMouseMove);
-	};
-
-	const onMouseUp = (event,silent) => {
-        if(!silent)props.context.center.onDragEnd();
-        document.body.style.cursor = 'auto';
-        setNowType();
-		document.removeEventListener('mouseup', onMouseUp);
-		document.removeEventListener('mousemove', onMouseMove);
-	};
-
-	const onMouseMove = (e) => {
-		document.body.style.cursor = 'move';
-		setPos({
-			x: e.pageX,
-			y: e.pageY,
-		});
-	};
+	
 
 	const componentList = useMemo(() => {
 		let list = [];
 		for (let x in components) {
 			const item = components[x];
 			list.push(
-				<div key={x} onMouseDown={() => onMouseDown(item, x)} className="component-item">
+				<div key={x} onMouseDown={() => props.context.left.onMouseDown(item, x)} className="component-item">
 					{item.title}
 				</div>
 			);

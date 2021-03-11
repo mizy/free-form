@@ -87,7 +87,6 @@ const HookModal = props => {
         try{
             const data = JSON.parse(context.data.formProps.validateMessages);
             context.data.formProps.validateMessages = data;
-            context.render();
             setModalVisible(false)
         }catch (e){
             message.error("校验信息填写有误，请确保为json")

@@ -3,23 +3,21 @@
     width:100%;
     height: 100%;
     background-color: #fff;
-
+    overflow: auto;
     .free-parse-form{
         padding:16px;
+        
         .free-form-container{
-            border: 1px dotted #ababab;
+            border: 1px dotted transparent;
             display: flex;
             align-items: flex-start;
+            min-height: 48px;
             min-width: 40px;
             .drag-item,.free-form-container,.empty{
                 margin-top:12px;
                 margin-bottom:12px;
                 position: relative;
-                &:hover{
-                    >.icon-drag{
-                        display: block;
-                    }
-                }
+                
                 .ant-form-item{
                     margin:0;
                     input{
@@ -31,10 +29,11 @@
                 border:1px solid transparent;
             }
             .free-form-container{
-                border: 1px dotted #ababab;
+                border: 1px dotted rgba(99,99,99,.2);
             }
-            min-height: 48px;
-           
+           &[data-uuid="root"]{
+               min-height: calc(100vh - 70px);
+           }
         }
         .free-container-column{
             display:block;
@@ -42,47 +41,34 @@
         .active{
             border-color: @highlight-dark!important;
         }
-        
-        .empty{
-            display: none;
-            padding:16px;
-            margin:5px;
-            background-color: rgba(35, 94, 221, 0.1);
-        }
-        .empty:hover{
-            background-color: rgba(35, 94, 221, 0.3);
-        }
          
     }
 
     &.ended{
-        .free-form-container:hover{
+        .free-form-container.hover{
             border-style: solid;
             border-color:darken(@highlight-dark,0.4)
         }
-        .drag-item:hover{
+        .drag-item.hover,.active{
             border:1px solid @highlight-dark;
+            >.icon-drag{
+                display: block;
+            }
         }
     }
     &.dragging{
         user-select: none;
         .free-parse-form{
-            .free-form-container:hover{
+            .free-form-container.hover{
                 border-style: solid;
                 border-color: rgba(24, 83, 211, 0.5);
-                .empty{
-                    display: block;
-                }
-                .icon-drag{
-                    display: none;
-                }
             }
-            
-        }
+        } 
         .cursor{
             background-color: @highlight-dark;
             position: absolute;
-        }
+            transition: left,top,width,height 100ms;
+        } 
     }
     .ant-form-inline{
         .ant-form-item-label>label{

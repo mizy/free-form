@@ -7,16 +7,20 @@ import Right from './Right/Right';
 import Content from './Content/Content';
 import Components from './Content/Components/componentsMap';
 import {v1 as uuid} from 'uuid';
+import {observable,autorun} from 'mobx';
 
 export default props => {
-    const data = useRef({
+    const data = useRef(observable({
         type:"container",
         uuid:'root',
         isRoot:true,
         labelCol:{span:8},
+        wrapperCol:{span:8},
+        props:{},
         children:[]
-    });
+    }));
     window.dataRef = data.current;
+   
     const [renderFlag,setRenderFlag] =useState();
     const _this = useRef({
         render:()=>{
@@ -75,7 +79,6 @@ export default props => {
             return res;
         }, 
     });
-
 
     return (
         <div className="editor-page">

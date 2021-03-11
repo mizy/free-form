@@ -26,7 +26,6 @@ export default props => {
         timeout = setTimeout(()=>{
             const {valuesToData} = Components[nowItem.type];
             valuesToData(allValues,nowItem);
-            props.context.render()
         },200);
     }
  
@@ -53,7 +52,9 @@ export default props => {
                         colon={true}
                         onFormRef={(form)=>{formRef.current = form;}} 
                         layout="vertical" onValuesChange={onChange} 
-                        labelCol={{}}  config={nowItem?Components[nowItem.type].formConfig:{}} />
+                        labelCol={{}}  
+                        config={nowItem?Components[nowItem.type].formConfig:{}} 
+                    />
                 </div>
                 <div style={{display:tab===1?'block':"none"}}>
                     <Rules nowItem={nowItem} {...props} />

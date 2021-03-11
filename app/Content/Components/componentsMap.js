@@ -34,11 +34,11 @@ const map = {
         title:"输入框",
         component: Input.component,
         defaultProps:{
-            placeholder:"请输入"
+            placeholder:"请输入",
         },
         formConfig:Input.formConfig,
-        dataToValues:Container.dataToValues,
-        valuesToData:Container.valuesToData,
+        dataToValues:Input.dataToValues,
+        valuesToData:Input.valuesToData,
 	},
 	select: {
         title:"下拉框",
@@ -46,8 +46,8 @@ const map = {
         defaultProps:{
             placeholder:"请选择"
         },
-        dataToValues:Container.dataToValues,
-        valuesToData:Container.valuesToData,
+        dataToValues:Input.dataToValues,
+        valuesToData:Input.valuesToData,
         formConfig:require("./Select").formConfig
 	},
 	datePicker: {
@@ -56,14 +56,14 @@ const map = {
         defaultProps:{
             placeholder:"请输入"
         },
-        dataToValues:Container.dataToValues,
-        valuesToData:Container.valuesToData,
+        dataToValues:Input.dataToValues,
+        valuesToData:Input.valuesToData,
 	},
 	switch: {
         title:"开关",
         component: Switch,
-        dataToValues:Container.dataToValues,
-        valuesToData:Container.valuesToData,
+        dataToValues:Input.dataToValues,
+        valuesToData:Input.valuesToData,
         formItemProps:{
             valuePropName:"checked"
         }
@@ -78,15 +78,15 @@ const map = {
         defaultProps:{
             placeholder:"请输入"
         },
-        dataToValues:Container.dataToValues,
-        valuesToData:Container.valuesToData,
+        dataToValues:Input.dataToValues,
+        valuesToData:Input.valuesToData,
         formConfig:Input.formConfig,
 	},
 	radioGroup: {
         title:"单选框",
         component: Radio.Group,
-        dataToValues:Container.dataToValues,
-        valuesToData:Container.valuesToData,
+        dataToValues:Input.dataToValues,
+        valuesToData:Input.valuesToData,
         defaultProps:{
             options:[{
                 label:"是",
@@ -100,35 +100,35 @@ const map = {
 	},
 	timePicker: {
         title:"时间选择器",
-        dataToValues:Container.dataToValues,
-        valuesToData:Container.valuesToData,
+        dataToValues:Input.dataToValues,
+        valuesToData:Input.valuesToData,
 		component: TimePicker,
 	},
 	transfer: {
         title:"穿梭框",
-        dataToValues:Container.dataToValues,
-        valuesToData:Container.valuesToData,
+        dataToValues:Input.dataToValues,
+        valuesToData:Input.valuesToData,
 		component: Transfer,
 	},
 	upload: {
         title:"上传",
         component: Upload,
-        dataToValues:Container.dataToValues,
-        valuesToData:Container.valuesToData,
+        dataToValues:Input.dataToValues,
+        valuesToData:Input.valuesToData,
         formConfig:require("./Select").formConfig
 	},
 	treeSelect: {
         title:"树选择器",
         component: TreeSelect,
-        dataToValues:Container.dataToValues,
-        valuesToData:Container.valuesToData,
+        dataToValues:Input.dataToValues,
+        valuesToData:Input.valuesToData,
         formConfig:require("./Select").formConfig
 	},
 	checkboxGroup: {
         title:"多选框",
         component: Checkbox.Group,
-        dataToValues:Container.dataToValues,
-        valuesToData:Container.valuesToData,
+        dataToValues:Input.dataToValues,
+        valuesToData:Input.valuesToData,
         defaultProps:{
             options:[{
                 label:"是",
@@ -143,15 +143,15 @@ const map = {
 	cascader: { 
         title:"级联选择器",
         component: Cascader ,
-        dataToValues:Container.dataToValues,
-        valuesToData:Container.valuesToData,
+        dataToValues:Input.dataToValues,
+        valuesToData:Input.valuesToData,
         formConfig:require("./Select").formConfig
     },
 	autoComplete: { 
         title:"自动回填输入框",
         component: AutoComplete,
-        dataToValues:Container.dataToValues,
-        valuesToData:Container.valuesToData,
+        dataToValues:Input.dataToValues,
+        valuesToData:Input.valuesToData,
         formConfig:require("./Select").formConfig
      },
 };
