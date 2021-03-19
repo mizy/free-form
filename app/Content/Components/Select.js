@@ -5,73 +5,87 @@ const formConfig =  {
     "children":[
         {
             type:"input",
-            name:"name",
-            label:"字段名",
             formItemProps:{
-                
+                name:"name",
+                label:"字段名",
             },
-            placeholder:"提交的字段名称",
+            props:{
+                placeholder:"提交的字段名称",
+            }
         },
         {
             type:"input",
-            name:"label",
-            label:"表单名",
             formItemProps:{
+                name:"label",
+                label:"表单名",
                 initialValue:"测试"
             },
-            placeholder:"表单描述的文字",
+            props:{
+                placeholder:"表单描述的文字",
+            }
         },
         {
             type:"inputNumber",
-            name:"width",
-            label:"宽度",
             formItemProps:{
-                
+                name:"width",
+                label:"宽度",
             },
-            placeholder:"默认不填为栅格宽度",
+            props:{
+                placeholder:"默认不填为栅格宽度",
+            }
         },
         {
             type:"radioGroup",
-            name:"mode",
-            label:"类型",
             formItemProps:{
+                name:"mode",
+                label:"类型",
                 initialValue:'default'
             },
-            options:[{
-                label:"默认",
-                value:'default'
-            },{
-                label:"多选",
-                value:"multiple"
-            },{
-                label:"标签",
-                value:"tags"
-            }]
+            props:{
+                options:[{
+                    label:"默认",
+                    value:'default'
+                },{
+                    label:"多选",
+                    value:"multiple"
+                },{
+                    label:"标签",
+                    value:"tags"
+                }]
+            }
         },
         {
             type:"switch",
-            name:"allowClear",
-            label:"允许清除",
             formItemProps:{
+                name:"allowClear",
+                label:"允许清除",
                 valuePropName:"checked"
             },
+            props:{
+
+            }
         },
         {
             type:"switch",
-            name:"showSearch",
-            label:"允许搜索",
             formItemProps:{
+                name:"showSearch",
+                label:"允许搜索",
                 valuePropName:"checked",
                 initialValue:false
             },
+            props:{
+
+            }
         },
         {
             type:"optionConfig",
-            name:"options",
-            label:"选项",
             formItemProps:{
-                
+                name:"options",
+                label:"选项",
             },
+            props:{
+                
+            }
         }
     ]
 }

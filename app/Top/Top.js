@@ -39,13 +39,28 @@ export default props => {
     const onExportCode = ()=>{
         const data = ant4(props.context.data);
         Modal.info({
-            title:"JSON数据",
+            title:"代码",
+            onOk:()=>{
+                download([data])
+            },
             content:<Input.TextArea
-                style={{height:300}}
+                style={{height:300,width:800}}
                 value={data}
                 >
             </Input.TextArea>
         })
+    }
+    function download(data){
+        const blob = new Blob(data);
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.download = 'FreeForm.js';
+        a.href = url;
+        a.style.display = 'none';
+        document.body.append(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url) 
     }
     return (
         <div className="editor-top">

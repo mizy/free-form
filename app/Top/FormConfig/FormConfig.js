@@ -8,59 +8,86 @@ const config = {
     "children":[
         {
             type:"radioGroup",
-            name:"layout",
-            label:"布局",
-            options:[{
-                label:"纵向",
-                value:"vertical"
-            },{
-                label:"横向",
-                value:"horizontal"
-            },{
-                label:"单行",
-                value:"inline"
-            }]
+            formItemProps:{
+                name:"layout",
+                label:"布局",
+            },
+            props:{
+                options:[{
+                    label:"纵向",
+                    value:"vertical"
+                },{
+                    label:"横向",
+                    value:"horizontal"
+                },{
+                    label:"单行",
+                    value:"inline"
+                }]
+            }
         },
         {
             type:"slider",
-            name:"labelCol",
-            label:"文字栅格",
-            max:24,
-            min:0
+            formItemProps:{
+                name:"labelCol",
+                label:"文字栅格",
+            },
+            props:{
+                max:24,
+                min:0
+            }
         },
         {
             type:"slider",
-            name:"wrapperCol",
-            label:"组件栅格",
-            max:24,
-            min:0
+            formItemProps:{
+                name:"wrapperCol",
+                label:"组件栅格",
+            },
+            props:{
+                max:24,
+                min:0
+            }
         },
         {
             type:"switch",
-            name:"colon",
-            label:"分号",
-            defaultChecked:true,
-            checkedChildren:"显示",
-            unCheckedChildren:"隐藏"
+            formItemProps:{
+                name:"colon",
+                label:"分号",
+                valuePropName:"checked"
+            },
+            props:{
+                defaultChecked:true,
+                checkedChildren:"显示",
+                unCheckedChildren:"隐藏"
+            },
         },
         {
             type:"input",
-            name:"width",
-            label:"宽度",
-            placeholder:"不填默认为自适应"
+            formItemProps:{
+                name:"width",
+                label:"宽度",
+            },
+            props:{
+                placeholder:"不填默认为自适应"
+            }
         },
         {
             type:"input",
-            name:"height",
-            label:"高度",
-            placeholder:"不填默认为自适应"
+            formItemProps:{
+                name:"height",
+                label:"高度",
+            },
+            props:{
+                placeholder:"不填默认为自适应"
+            }
         },{
             type:"input",
-            inputType:"TextArea",
-            label:"校验文案",
-            name:"validateMessages",
-            placeholder:"默认报错校验文案",
+            props:{
+                inputType:"TextArea",
+                placeholder:"默认报错校验文案",
+            },
             formItemProps:{
+                label:"校验文案",
+                name:"validateMessages",
                 initialValue:JSON.stringify(validateMessages,' ',4)
             }
         }

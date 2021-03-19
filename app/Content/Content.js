@@ -182,7 +182,6 @@ export default observer(props => {
             context.right.onSelect(undefined)
         },
         onMouseUp:action((event)=>{
-
             // 不论什么情况先解除事件绑定
             _this.current.removeEvent();
             if(status.current ==='ended')return;
@@ -200,8 +199,10 @@ export default observer(props => {
                     formItemProps:{
                         label:"测试",
                     },
+                    props:{
+                        ...nowItem.defaultProps
+                    },
                     children:nowItem.type==='container'?[]:undefined,
-                    ...nowItem.defaultProps
                 };
                 parent.children.splice(index,0,itemData);
             }else{

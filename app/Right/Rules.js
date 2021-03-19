@@ -68,85 +68,106 @@ const rulesConfig = {
     "children":[
         {
             type:"radioGroup",
-            name:"required",
-            label:"是否必填",
-            placeholder:"请填写",
             formItemProps:{
-                initialValue:false
+                initialValue:false,
+                name:"required",
+                label:"是否必填",
             },
-            options:[{
-                label:"是",
-                value:true
-            },{
-                label:"否",
-                value:false
-            }]
+            props:{
+                placeholder:"请填写",
+                options:[{
+                    label:"是",
+                    value:true
+                },{
+                    label:"否",
+                    value:false
+                }]
+            }
         },
         {
             type:"inputNumber",
-            name:"len",
-            label:"长度",
-            placeholder:"请填写",
+            formItemProps:{
+                name:"len",
+                label:"长度",
+            },
+            props:{
+                placeholder:"请填写",
+            }
         },
         {
             type:"inputNumber",
-            name:"max",
-            label:"最大长度",
-            placeholder:"请填写",
+            formItemProps:{
+                name:"max",
+                label:"最大长度",
+            },
+            props:{
+                placeholder:"请填写",
+            }
         },
         {
             type:"select",
-            name:"type",
-            label:"值类型",
-            placeholder:"请选择",
-            options:[
-                {
-                    label:'string',
-                    value:"string"
-                },
-                {
-                    label:'number',
-                    value:"number"
-                },
-                {
-                    label:'boolean',
-                    value:"boolean"
-                },
-                {
-                    label:'float',
-                    value:"float"
-                },
-                {
-                    label:'integer',
-                    value:"integer"
-                },
-                {
-                    label:'date',
-                    value:"date"
-                },
-                {
-                    label:'url',
-                    value:"url"
-                },{
-                    label:"email",
-                    value:"email"
-                }
-            ]
+            formItemProps:{
+                name:"type",
+                label:"值类型",
+            },
+            props:{
+                placeholder:"请选择",
+                options:[
+                    {
+                        label:'string',
+                        value:"string"
+                    },
+                    {
+                        label:'number',
+                        value:"number"
+                    },
+                    {
+                        label:'boolean',
+                        value:"boolean"
+                    },
+                    {
+                        label:'float',
+                        value:"float"
+                    },
+                    {
+                        label:'integer',
+                        value:"integer"
+                    },
+                    {
+                        label:'date',
+                        value:"date"
+                    },
+                    {
+                        label:'url',
+                        value:"url"
+                    },{
+                        label:"email",
+                        value:"email"
+                    }
+                ]
+            }
         },
         {
             type:"switch",
-            name:"whitespace",
-            label:"支持提交空格",
             formItemProps:{
-                initialValue:false
+                name:"whitespace",
+                initialValue:false,
+                label:"支持提交空格",
+                tooltip:"是否支持字段仅包含空格则校验不通过",
+                valuePropName:"checked"
             },
-            tooltip:"是否支持字段仅包含空格则校验不通过"
+            props:{
+            }
         },
         {
             type:"ruleConfig",
-            label:"其他规则配置",
-            name:"otherRules",
-            tooltip:"配置其他自定义规则"
+            formItemProps:{
+                label:"其他规则配置",
+                name:"otherRules",
+                tooltip:"配置其他自定义规则"
+            },
+            props:{
+            }
         }
         
     ]

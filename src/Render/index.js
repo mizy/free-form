@@ -1,7 +1,8 @@
 import components from '../Components';
 import { Form } from 'antd';
-const Render = ({ config = {}, userComponents = {} }) => {
-	const { type,visible=true, useFormItem = true, name, label, formItemProps, labelCol, wrapperCol, rules, component, ...others } = config;
+const Render = (parentProps) => {
+    const { config = {}, userComponents = {} } = parentProps;
+	const { type,visible=true, useFormItem = true, props={}, formItemProps={}, labelCol, wrapperCol, component} = config;
     if(!visible)return false;
     
     const Component = component || userComponents[type] || components[type]; // 支持json直接传入component
@@ -11,16 +12,13 @@ const Render = ({ config = {}, userComponents = {} }) => {
 	}
 	return useFormItem ? (
         <Form.Item 
-            labelCol={labelCol} 
-            wrapperCol={wrapperCol} 
-            name={name} 
-            label={label} 
-            rules={rules} 
+            labelCol={labelCol || parentProps.labelCol}
+            wrapperCol={wrapperCol || parentProps.wrapperCol}
             {...formItemProps}>
-			<Component {...others} />
+			<Component {...props} />
 		</Form.Item>
 	) : (
-		<Component {...others} />
+		<Component {...props} />
 	);
 };
 export default Render;

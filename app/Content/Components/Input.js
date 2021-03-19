@@ -11,69 +11,79 @@ const formConfig =  {
     "children":[
         {
             type:"input",
-            name:"name",
-            label:"字段名",
             formItemProps:{
-                
+                name:"name",
+                label:"字段名",
             },
-            placeholder:"提交的字段名称",
+            props:{
+                placeholder:"提交的字段名称",
+            }
         },
         {
             type:"input",
-            name:"label",
-            label:"表单名",
             formItemProps:{
-                initialValue:"测试"
+                name:"label",
+                initialValue:"测试",
+                label:"表单名",
             },
-            placeholder:"表单描述的文字",
+            props:{
+                placeholder:"表单描述的文字",
+            }
         },
         {
             type:"inputNumber",
-            name:"width",
-            label:"宽度",
             formItemProps:{
-                
+                name:"width",
+                label:"宽度",
             },
-            placeholder:"默认不填为栅格宽度",
+            props:{
+                placeholder:"默认不填为栅格宽度",
+            }
         },
         {
             type:"radioGroup",
-            name:"inputType",
-            label:"类型",
             formItemProps:{
-                initialValue:"default"
+                name:"inputType",
+                initialValue:"default",
+                label:"类型",
             },
-            options:[{
-                label:"默认",
-                value:"default"
-            },{
-                label:"密码",
-                value:"Password"
-            },{
-                label:"文本",
-                value:"TextArea"
-            },{
-                label:"检索",
-                value:"Search"
-            }]
+            props:{
+                options:[{
+                    label:"默认",
+                    value:"default"
+                },{
+                    label:"密码",
+                    value:"Password"
+                },{
+                    label:"文本",
+                    value:"TextArea"
+                },{
+                    label:"检索",
+                    value:"Search"
+                }]
+            }
+            
         },
         {
             type:"inputNumber",
-            name:"maxLength",
-            label:"最大长度",
             formItemProps:{
-                
+                name:"maxLength",
+                label:"最大长度",
             }, 
-            placeholder:"输入框最大输入长度",
+            props:{
+                placeholder:"输入框最大输入长度",
+            }
         },
         {
             type:"switch",
-            name:"allowClear",
-            label:"允许清除",
             formItemProps:{
-                valuePropName:"checked"
+                name:"allowClear",
+                valuePropName:"checked",
+                label:"允许清除",
             },
-            // dots:true,
+            props:{
+                
+            }
         }
     ]
 }

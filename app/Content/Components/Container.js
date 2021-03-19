@@ -50,63 +50,69 @@ Container.formConfig = {
     "children":[
         {
             type:"radioGroup",
-            name:"direction",
-            label:"布局方向",
             formItemProps:{
+                name:"direction",
+                label:"布局方向",
                 initialValue:"column"
             },
-            options:[{
-                label:"纵向",
-                value:"column"
-            },{
-                label:"横向",
-                value:"row"
-            }]
+            props:{
+                options:[{
+                    label:"纵向",
+                    value:"column"
+                },{
+                    label:"横向",
+                    value:"row"
+                }]
+            }
         },
         {
             type:"slider",
-            name:"labelCol",
-            label:"文字栅格",
-            // dots:true,
             formItemProps:{
+                name:"labelCol",
+                label:"文字栅格",
                 initialValue:8
             },
-            max:24,
-            min:0
+            props:{
+                max:24,
+                min:0
+            }
         },
         {
             type:"slider",
-            name:"wrapperCol",
-            label:"组件栅格",
             formItemProps:{
-                initialValue:16
+                initialValue:16,
+                name:"wrapperCol",
+                label:"组件栅格",
             },
-            // dots:true,
-            max:24,
-            min:0
+            props:{
+                max:24,
+                min:0
+            }
         },
         {
             type:"slider",
-            name:"widthRatio",
-            label:"容器宽度(%)",
             formItemProps:{
+                name:"widthRatio",
+                label:"容器宽度(%)",
                 tooltip:"当前容器占父容器的宽度百分比"
             },
-            // dots:true,
-            max:100,
-            min:0
+            props:{
+                max:100,
+                min:0
+            }
         },
         {
             type:"switch",
-            name:"wrap",
-            label:"自动换行",
             formItemProps:{
                 valuePropName:"checked",
                 initialValue:false,
-                tooltip:"是否自动换行,等同于flex-wrap"
+                tooltip:"是否自动换行,等同于flex-wrap",
+                name:"wrap",
+                label:"自动换行",
             },
-            // dots:true,
-             
+            props:{
+
+            }
         },
     ]
 }
