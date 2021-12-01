@@ -7,9 +7,9 @@ let webpackConfig = {
     entry: './demo/index.js',
     output: {
         publicPath: '/',
-        filename:  '[name].js'
+        filename: '[name].js'
     },
-    devtool: 'eval-source-map' ,
+    devtool: 'eval-source-map',
     devServer: {
         port: 8008,
         index: 'index.html',
@@ -20,7 +20,7 @@ let webpackConfig = {
         hot: true,
         historyApiFallback: true,
     },
-     optimization: {
+    optimization: {
         // splitChunks: {
         //     chunks: 'all',
         //     minSize: 200000,
@@ -61,23 +61,23 @@ let webpackConfig = {
             '@': path.resolve(__dirname, 'src')
         }
     },
-    mode:'development' ,
+    mode: 'development',
     plugins: [
         new HtmlWebpackPlugin({
             filename: 'index.html',
-            template: './app/index.html',
-            publicPath:'/'
+            template: './demo/index.html',
+            publicPath: '/'
         }),
         new webpack.ProvidePlugin({
             React: 'react'
         }),
         new webpack.DllReferencePlugin({
-            context:path.resolve(__dirname,'./public/dll'),
+            context: path.resolve(__dirname, './public/dll'),
             manifest: require('./public/dll/manifest_dll.json')
         }),
         // new BundleAnalyzerPlugin({
         //     generateStatsFile: true
         // })
     ]
-}; 
+};
 module.exports = webpackConfig;

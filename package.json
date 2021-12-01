@@ -1,56 +1,56 @@
 {
-  "name": "free-form",
-  "version": "1.0.0",
-  "description": "动态表单解析引擎",
-  "main": "index.js",
-  "scripts": {
-    "build:dll": "webpack --config webpack.config.dll.js",
-    "start": "webpack serve --config webpack.config.js",
-    "build": "webpack --config webpack.config.form.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/mizy/free-form.git"
-  },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/mizy/free-form/issues"
-  },
-  "homepage": "https://github.com/mizy/free-form#readme",
-  "dependencies": {
-    "antd": "^4.11.2",
-    "core-js": "^3.8.3",
-    "dot": "^2.0.0-beta.1",
-    "events": "^3.2.0",
-    "mobx": "^6.1.8",
-    "mobx-react": "^7.1.0",
-    "prettier": "^2.2.1",
-    "react": "^17.0.1",
-    "uuid": "^8.3.2"
-  },
-  "devDependencies": {
-    "@babel/core": "^7.0.1",
-    "@babel/plugin-proposal-class-properties": "^7.0.0",
-    "@babel/plugin-proposal-decorators": "^7.0.0",
-    "@babel/plugin-syntax-dynamic-import": "^7.0.0",
-    "@babel/plugin-syntax-import-meta": "^7.0.0",
-    "@babel/plugin-transform-runtime": "^7.0.0",
-    "@babel/polyfill": "^7.4.4",
-    "@babel/preset-env": "^7.0.0",
-    "@babel/preset-react": "^7.0.0",
-    "@babel/runtime": "7.0.0-beta.46",
-    "babel-loader": "^8.0.2",
-    "babel-plugin-import": "^1.13.3",
-    "css-loader": "^1.0.0",
-    "html-webpack-plugin": "^4.5.1",
-    "less": "^3.8.1",
-    "less-loader": "^4.1.0",
-    "react-dom": "^17.0.1",
-    "style-loader": "^0.21.0",
-    "webpack": "^5.16.0",
-    "webpack-bundle-analyzer": "^4.4.0",
-    "webpack-cli": "^4.4.0",
-    "webpack-dev-server": "^3.11.2"
-  }
+    "name": "free-form",
+    "version": "1.0.0",
+    "description": "动态表单解析引擎",
+    "main": "index.js",
+    "scripts": {
+        "build:dll": "webpack --config webpack.config.dll.js",
+        "start": "webpack serve --config webpack.config.js",
+        "build": "webpack --config webpack.config.form.js"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/mizy/free-form.git"
+    },
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/mizy/free-form/issues"
+    },
+    "homepage": "https://github.com/mizy/free-form#readme",
+    "dependencies": {
+        "antd": "^4.11.2",
+        "core-js": "^3.8.3",
+        "dot": "^2.0.0-beta.1",
+        "events": "^3.2.0",
+        "mobx": "^6.1.8",
+        "mobx-react": "^7.1.0",
+        "prettier": "^2.2.1",
+        "react": "^17.0.1",
+        "uuid": "^8.3.2"
+    },
+    "devDependencies": {
+        "@babel/core": "^7.0.1",
+        "@babel/plugin-proposal-class-properties": "^7.0.0",
+        "@babel/plugin-proposal-decorators": "^7.0.0",
+        "@babel/plugin-syntax-dynamic-import": "^7.0.0",
+        "@babel/plugin-syntax-import-meta": "^7.0.0",
+        "@babel/plugin-transform-runtime": "^7.0.0",
+        "@babel/polyfill": "^7.4.4",
+        "@babel/preset-env": "^7.0.0",
+        "@babel/preset-react": "^7.0.0",
+        "@babel/runtime": "7.0.0-beta.46",
+        "babel-loader": "^8.0.2",
+        "babel-plugin-import": "^1.13.3",
+        "css-loader": "^1.0.0",
+        "html-webpack-plugin": "^4.5.1",
+        "less": "^3.8.1",
+        "less-loader": "^4.1.0",
+        "react-dom": "^17.0.1",
+        "style-loader": "^0.21.0",
+        "webpack": "^5.16.0",
+        "webpack-bundle-analyzer": "^4.4.0",
+        "webpack-cli": "^4.4.0",
+        "webpack-dev-server": "^3.11.2"
+    }
 }
